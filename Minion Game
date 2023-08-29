@@ -1,6 +1,6 @@
 https://www.hackerrank.com/challenges/the-minion-game/problem
 
-------------------------------------------------------------------------------------------------
+
 def minion_game(string):
     vowel_list = ['A', 'E', 'I', 'O', 'U']
     stuart_score = 0
