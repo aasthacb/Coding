@@ -1,0 +1,22 @@
+https://www.hackerrank.com/challenges/merge-the-tools/problem
+
+
+def remove_repeats(string : str) :
+    unique_chars = []
+    for letter in string :
+        if letter not in unique_chars:
+            unique_chars.append(letter)
+    print(''.join(unique_chars))
+
+
+def merge_the_tools(string, k):
+    #k = len_of_substrings
+    #n = no_of_substrings
+    n = int(len(string) / k)
+    substrings = [string[i:i+k] for i in range(0,len(string),k)]
+    for word in substrings:
+        remove_repeats(word)
+
+if __name__ == '__main__':
+    string, k = input(), int(input())
+    merge_the_tools(string, k)
