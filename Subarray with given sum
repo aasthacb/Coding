@@ -1,0 +1,25 @@
+https://practice.geeksforgeeks.org/problems/subarray-with-given-sum-1587115621/1
+
+    def subArraySum(self, arr, n, s):
+        left, right = 0, 0
+        curr_sum = 0
+        
+        if s == 0 and 0 not in arr:
+            return [-1]
+        if sum(arr) == s:
+            return[1,n]
+        
+
+        while right < n:
+            curr_sum += arr[right]
+
+            while curr_sum > s:
+                curr_sum -= arr[left]
+                left += 1
+
+            if curr_sum == s:
+                return [left + 1, right + 1]
+
+            right += 1
+
+        return [-1]
