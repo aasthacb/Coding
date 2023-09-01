@@ -1,0 +1,12 @@
+https://practice.geeksforgeeks.org/problems/permutations-of-a-given-string2041/1
+
+import itertools
+class Solution:
+    def find_permutation(self, S):
+        # Code here
+        perm_list_of_tup = list(itertools.permutations(S))
+        res = []
+        for tup in perm_list_of_tup:
+            if "".join(tup) not in res:  #to check for duplicates
+                res.append("".join(tup))
+        return res
