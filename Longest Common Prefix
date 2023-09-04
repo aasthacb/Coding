@@ -1,0 +1,19 @@
+https://practice.geeksforgeeks.org/problems/longest-common-prefix-in-an-array5129/1
+
+class Solution:
+    def longestCommonPrefix(self, arr, n):
+        # code here
+        arr.sort(key = len)
+        LCP = arr[0]
+        while(True):
+            count = 0
+            for element in arr:
+                if element.startswith(LCP):
+                    count += 1
+                    #print(LCP,element)
+                    
+            if count != len(arr):
+                LCP = LCP[:len(LCP)-1]
+            else:
+                if LCP == "": return -1
+                else : return LCP
