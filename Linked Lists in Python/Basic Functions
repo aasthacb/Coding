@@ -19,3 +19,11 @@ class LinkedList:
         while(temp_node.next):
             temp_node = temp_node.next
         temp_node.next = new_node
+
+    def find_length(self,head):
+        temp_node = head
+        length = 0
+        while(temp_node):
+            length += 1
+            temp_node = temp_node.next    
+        return length
