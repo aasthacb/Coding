@@ -1,0 +1,11 @@
+def findMid(self, head):
+        length = find_length(self,head)
+        mid_length = int(length/2 + 1)
+            
+        count = 0
+        temp_node = head
+        while(temp_node):
+            count += 1
+            if count == mid_length:
+                return temp_node.data
+            temp_node = temp_node.next
