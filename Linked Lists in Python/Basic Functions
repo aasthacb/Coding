@@ -1,0 +1,21 @@
+'''
+class node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+        
+class LinkedList:
+    def __init__(self):
+        self.head = None
+        
+    def insert_at_beginning(self,data):
+        new_node = node(data)
+        new_node.next = self.head
+        self.head = new_node
+        
+    def insert_at_end(self,data):
+        new_node = node(data)
+        temp_node = self.head
+        while(temp_node.next):
+            temp_node = temp_node.next
+        temp_node.next = new_node
