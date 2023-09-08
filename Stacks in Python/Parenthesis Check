@@ -1,1 +1,16 @@
-
+    def ispar(self,x):
+        # code here
+        bracket_dict = {')' : '(','}' : '{' , ']' : '['}
+        stack = Stack()
+        
+        for bracket in x:
+            if bracket in '({[':
+                stack.push(bracket)
+            elif bracket in ')}]':
+                if stack.is_empty():
+                    return False
+                elif bracket_dict[bracket] == stack.top():
+                    stack.pop()
+                else:
+                    return False
+        return stack.is_empty()
