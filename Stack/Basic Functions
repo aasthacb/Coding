@@ -1,0 +1,22 @@
+class Stack:
+    def __init__(self):
+        self.items = []  #initialising the stack list
+        
+    def is_empty(self):
+        return len(self.items) == 0
+    
+    def push(self,item):
+        self.items.append(item)
+        
+    def pop(self):
+        if is_empty(self):
+            print("STACK EMPTY")
+        else:
+            self.items.pop()
+            
+    def top(self):
+        if is_empty(self):
+            print("STACK EMPTY")
+        else:
+            return self.items[-1]
+    
