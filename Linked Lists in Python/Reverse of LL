@@ -1,0 +1,12 @@
+    def reverseList(self, head):
+        curr_node = head
+        prev_node = None
+        
+        while(curr_node is not None):
+            temp_node = curr_node.next #holding the next element of the LL
+            curr_node.next = prev_node #reversing pointer 
+            prev_node = curr_node #increementing prev node
+            curr_node = temp_node #incrementing curr_node till None
+        self.head = prev_node
+        
+        printList(self.head)
