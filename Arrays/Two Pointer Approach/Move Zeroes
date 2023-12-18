@@ -1,0 +1,12 @@
+https://leetcode.com/problems/move-zeroes/?envType=study-plan-v2&envId=leetcode-75
+
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        lp = 0
+        for rp in range(len(nums)):
+            if nums[rp] != 0:
+                temp = nums[rp]
+                nums[rp] = 0
+                nums[lp] = temp   //diff approach to swapping giving error on leetcode
+                lp += 1
+        print(nums)
