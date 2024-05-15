@@ -1,0 +1,12 @@
+https://leetcode.com/problems/find-the-difference-of-two-arrays/description/?envType=study-plan-v2&envId=leetcode-75
+
+class Solution:
+    def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
+        set_nums1 = set(nums1)
+        print(set_nums1)
+        set_nums2 = set(nums2)
+        print(set_nums2)
+        notinNums2 = list(set_nums1 - set_nums2)
+        notinNums1 = list(set_nums2 - set_nums1)
+        return [notinNums2,notinNums1]
+        
