@@ -1,0 +1,24 @@
+https://leetcode.com/problems/merge-strings-alternately/description/?envType=study-plan-v2&envId=leetcode-75
+
+class Solution:
+    def mergeAlternately(self, word1: str, word2: str) -> str:
+        l1 = len(word1)
+        l2 = len(word2)
+        word = ""
+        x = l1 - l2
+        if x>=0: #l1 > l2
+            for i in range(l2):
+                word = word + word1[i]
+                word = word + word2[i]
+            for y in range(l2,l1):
+                word = word + word1[y]
+        else:
+            for i in range(l1):
+                word = word + word1[i]
+                word = word + word2[i]
+            for y in range(l1,l2):
+                word = word + word2[y]
+
+        return word
+
+        
