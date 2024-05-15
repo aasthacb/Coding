@@ -1,0 +1,29 @@
+https://leetcode.com/problems/product-of-array-except-self/description/?envType=study-plan-v2&envId=leetcode-75
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        prod = 1
+        prodwo0 = 1 #product without 0
+        count0 = 0
+        for x in nums:
+                prod *= x
+                if x!=0:
+                    prodwo0 *= x
+                if x == 0:
+                    count0 += 1
+                
+        
+
+        result = []
+        for x in nums:
+            if x!= 0: 
+                result.append(prod//x)
+            else:
+                if count0 > 1: #product will be zero if more than 1 zero present
+                    result.append(0)
+                else: #else just append product of all others except the 1 zero
+                    result.append(prodwo0)
+
+        return result
+
+        
