@@ -1,0 +1,26 @@
+https://leetcode.com/problems/removing-stars-from-a-string/description/?envType=study-plan-v2&envId=leetcode-75
+
+class Solution:
+    def __init__(self):
+        self.items = []
+    def push(self,item):
+        self.items.append(item)
+    def pop(self):
+        if not self.is_empty():
+            self.items.pop()
+        else:
+            print("index error")
+    def is_empty(self):
+        return len(self.items) == 0
+
+    def removeStars(self, s: str) -> str:
+        
+        stack = Solution()
+        for char in s:
+            if char != '*':
+                stack.push(char)
+            else :
+                stack.pop()
+        return ''.join(stack.items)
+
+        
