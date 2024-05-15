@@ -1,0 +1,15 @@
+https://leetcode.com/problems/maximum-average-subarray-i/description/?envType=study-plan-v2&envId=leetcode-75
+
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        window_sum = sum(nums[:k])
+        max_avg = window_sum/k
+        for x in range(1,len(nums)-k + 1):
+            window_sum = window_sum - nums[x-1] + nums[x+k-1] 
+            #sliding window by removing one and adding one element
+            avg = window_sum/k
+            max_avg = max(avg,max_avg)
+        return max_avg
+
+
+        
