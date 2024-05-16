@@ -1,0 +1,13 @@
+https://leetcode.com/problems/palindrome-number/
+
+class Solution:
+    def is_Palindrome(self, x: int) -> bool:
+        xs = str(x)
+        for i in range (len(xs)//2):
+            if xs[i] != xs[len(xs) - i - 1]:
+                return False
+        return True
+
+    def isPalindrome(self, x: int) -> bool:
+        xs = str(x)
+        return xs == xs[::-1]
