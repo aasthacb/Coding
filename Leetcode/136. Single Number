@@ -1,0 +1,15 @@
+https://leetcode.com/problems/single-number/description/
+
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        for ele in nums:
+            if nums.count(ele) == 1:
+                return ele
+
+
+    def single_Number(self, nums: List[int]) -> int:
+        for ele in nums:
+            temp = nums[:]
+            temp.remove(ele)
+            if ele not in temp:
+                return ele
