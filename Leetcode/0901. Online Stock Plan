@@ -1,0 +1,31 @@
+https://leetcode.com/problems/online-stock-span/
+Initialization:
+The stack is initialized as an empty list.
+Processing Each Price:
+For each new price, start with a span of 1 (since the span of the current day itself is always at least 1).
+Use a while loop to check if the stack is not empty and if the price at the top of the stack is less than or equal to the current price.
+If the condition is true, pop the top of the stack.
+Add the span of the popped element to the current span.
+After processing, push the current price and its calculated span as a tuple onto the stack.
+Returning the Span:
+Return the span for the current price.
+
+class StockSpanner:
+    #stack storing tuples (price,span)
+
+    def __init__(self):
+        self.stack = []
+    
+    def next(self, price: int) -> int:
+        span = 1
+        x = 0
+        while self.stack and price >= self.stack[-1][0]:
+            span += self.stack.pop()[1]   #adding the span of the smaller prev element
+        self.stack.append((price,span))
+        return span
+
+
+# Your StockSpanner object will be instantiated and called as such:
+# obj = StockSpanner()
+# param_1 = obj.next(price)
+
