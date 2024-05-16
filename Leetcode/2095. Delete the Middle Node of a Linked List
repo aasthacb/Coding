@@ -1,0 +1,56 @@
+https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/submissions/1259437289/?envType=study-plan-v2&envId=leetcode-75
+
+MY APPROACH:
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        #finding length of LL
+        temp_node = head
+        length = 0
+        while(temp_node):
+            length += 1
+            temp_node = temp_node.next
+        
+        mid_index = length//2
+        if mid_index == 0: return None
+        #-------------------------------------
+        temp_node = head
+        length = 0
+        while(temp_node):
+            if length == mid_index - 1:
+                temp_node.next = temp_node.next.next
+            length +=1
+            temp_node = temp_node.next
+
+        return head
+
+  #-------------------------------------------------
+  BETTER APPROACH
+  class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(next=head)
+        slow, fast = dummy, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        slow.next = slow.next.next
+        return dummy.next
+
+explantion (generated from chatgpt):
+This approach uses a dummy node to simplify the deletion process of the middle node. Here's a step-by-step explanation:
+
+Create a Dummy Node: Initialize a dummy node and set its next pointer to the head of the linked list. This dummy node helps in cases where the middle node is the first node of the original linked list. It acts as a placeholder to avoid special handling for the head node.
+
+Use Two Pointers to Find the Middle Node: Use two pointers, slow and fast, initialized to the dummy node and the head of the linked list, respectively. Move slow one step forward and fast two steps forward in each iteration until fast reaches the end of the list (fast or fast.next is None).
+
+Delete the Middle Node: After the loop, slow will be pointing to the node just before the middle node. To delete the middle node, update the next pointer of slow to skip the middle node (slow.next = slow.next.next).
+
+Return the Updated List: Finally, return dummy.next, which points to the head of the updated linked list (with the middle node deleted).
+
+This approach is efficient and avoids the need to track the length of the linked list separately. It also handles cases where the middle node is the first node of the list without special treatment, thanks to the dummy node
+  
