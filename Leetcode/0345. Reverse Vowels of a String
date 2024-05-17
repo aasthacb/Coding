@@ -1,0 +1,21 @@
+https://leetcode.com/problems/reverse-vowels-of-a-string/description/?envType=study-plan-v2&envId=leetcode-75
+
+class Solution:
+    def reverseVowels(self, s: str) -> str:
+        #vowels = ['a','e','i','o','u','A','E','I','O','U']
+        vowels = "aeiouAEIOU"
+        vowel_in_list = []
+        pos_of_vowel = []
+        for index in range(len(s)):
+            if s[index] in vowels:
+                vowel_in_list = [s[index]] + vowel_in_list #adding in reverse order
+                pos_of_vowel.append(index)
+        #print(vowel_in_list)
+        #print(pos_of_vowel)
+        #vowel_in_list = vowel_in_list[::-1]
+        res = list(s)
+        vow_count = 0
+        for index in pos_of_vowel:
+            res[index] = vowel_in_list[vow_count]
+            vow_count += 1
+        return "".join(res)
