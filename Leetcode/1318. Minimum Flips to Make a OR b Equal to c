@@ -1,0 +1,43 @@
+https://leetcode.com/problems/minimum-flips-to-make-a-or-b-equal-to-c/description/?envType=study-plan-v2&envId=leetcode-75
+
+class Solution:
+    def minFlips(self, a: int, b: int, c: int) -> int:
+
+        #to find binary rep list
+        def bin_rep(x : int) -> List[int]:
+            #can use bin() too, remove first two chars ("0b") then convert bin_str to a list
+            res = []
+            if x == 0 :
+                return [0]
+            while(x > 0):
+                digit = x % 2
+                res.append(digit)
+                x //= 2
+            return res[::-1]
+
+        la = bin_rep(a)
+        lb = bin_rep(b)
+        lc = bin_rep(c)
+
+        #making all the same length
+        max_len = max(len(la),len(lb),len(lc))
+        la = [0] * (max_len - len(la)) + la
+        lb = [0] * (max_len - len(lb)) + lb
+        lc = [0] * (max_len - len(lc)) + lc
+
+        flips = 0
+        for index in range(max_len):
+            if lc[index] == 1 :
+                if la[index] == 0 and lb[index] == 0:
+                    flips +=1
+
+            else: #lc[index] == 0
+                if la[index] == 1 and lb[index] == 1:
+                    flips +=2
+                elif la[index] == 1 or lb[index] == 1:
+                    flips +=1
+      
+        #print(la) [for debugging]
+        #print(lb)
+        #print(lc)
+        return flips
