@@ -1,0 +1,21 @@
+https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+
+class Solution:
+   def lengthOfLongestSubstring(self, s: str) -> int:
+        start = 0
+        end = 0
+        chars = []
+        longest_length = 0
+
+        while(end < len(s)):
+            if s[end] not in chars:
+                chars.append(s[end])
+                end += 1
+                longest_length = max(longest_length,end-start)
+            else:
+                chars.remove(s[start])
+                start += 1
+        return longest_length
+
+            
+        
