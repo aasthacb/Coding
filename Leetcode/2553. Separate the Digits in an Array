@@ -1,0 +1,9 @@
+https://leetcode.com/problems/separate-the-digits-in-an-array/description/
+
+class Solution(object):
+    def separateDigits(self, nums):
+        s = ""
+        for num in nums:
+            s+= str(num)
+        return [int(char) for char in s]
+        
