@@ -1,0 +1,14 @@
+https://leetcode.com/problems/teemo-attacking/
+
+class Solution(object):
+    def findPoisonedDuration(self, timeSeries, duration):
+        time = 0
+        for i in range (len(timeSeries)-1):
+            if timeSeries[i+1] >= timeSeries[i] + duration:
+                time += duration
+            else:
+                time += timeSeries[i+1]-timeSeries[i]
+            print(time)
+        return time+duration
+
+        
