@@ -4,4 +4,27 @@ https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan
         nums1[:] = nums1[:m] + nums2[:]
         print(nums1)
         nums1[:] = sorted(nums1)
-        
+
+
+#different working two pointer soln (spent a lot of time on this hehe vv proud)
+def merge(self, nums1, m, nums2, n):
+        num1pointer = 0
+        num2pointer = 0
+
+        while(num1pointer < m+n and num2pointer < n):
+            if nums1[num1pointer:] == [0 for x in nums1[num1pointer:]]: #seeing if rest of n1 is a list of 0s
+              
+                nums1[:] = nums1[:num1pointer] + nums2[num2pointer:]
+                
+                if len(nums1) < m+n : #case where n had extra 0s (non accounted for thus removed while slicing)
+                    nums1[:] = nums1[:] + [0 for x in range(m+n-len(nums1))]
+                return
+
+            if nums1[num1pointer] >= nums2[num2pointer]:
+                nums1[:] = nums1[:num1pointer] + [nums2[num2pointer]] + nums1[num1pointer:-1]
+                #print(nums1)
+                num1pointer += 1
+                num2pointer += 1
+            else:
+                num1pointer +=1
+        print(nums1)
