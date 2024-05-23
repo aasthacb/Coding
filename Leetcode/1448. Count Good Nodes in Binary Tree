@@ -1,0 +1,35 @@
+https://leetcode.com/problems/count-good-nodes-in-binary-tree/description/?envType=study-plan-v2&envId=leetcode-75
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+class Solution(object):
+    def goodNodes(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def dfs(root,maxval):
+            if root is None : return
+            if root.val >= maxval:
+                self.count += 1
+                maxval = root.val
+            dfs(root.left,maxval)
+            dfs(root.right,maxval)
+
+        self.count = 0
+        maxval = -1000
+        if root : 
+            self.count += 1
+            maxval = root.val
+        dfs(root.left,maxval)
+        dfs(root.right,maxval)
+        return self.count
+
+
+        
