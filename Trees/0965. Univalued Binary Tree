@@ -1,0 +1,25 @@
+https://leetcode.com/problems/univalued-binary-tree/description/
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+
+class Solution(object):
+    def isUnivalTreee(self,node,x):
+        if node == None :
+            return True
+        if node.val != x :
+            return False
+        return self.isUnivalTreee(node.left,x) and self.isUnivalTreee(node.right,x) 
+
+    def isUnivalTree(self, root): #MAIN
+        x = root.val
+        if root == None : return True
+        return self.isUnivalTreee(root.left,x) and self.isUnivalTreee(root.right,x)
+        
+
+        
