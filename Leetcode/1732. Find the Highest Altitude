@@ -1,0 +1,14 @@
+https://leetcode.com/problems/find-the-highest-altitude/description/?envType=study-plan-v2&envId=leetcode-75
+
+class Solution(object):
+    def largestAltitude(self, gain):
+        """
+        :type gain: List[int]
+        :rtype: int
+        """
+        altitudes = [0]
+        #logic : gain[i] = altitudes[i+1] - altitudes[i]
+        for g in range (len(gain)):
+            altitudes += [gain[g] + altitudes[g]]
+
+        return max(altitudes)
