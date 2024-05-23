@@ -1,0 +1,7 @@
+https://leetcode.com/problems/merge-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150
+
+    def merge(self, nums1, m, nums2, n):
+        nums1[:] = nums1[:m] + nums2[:]
+        print(nums1)
+        nums1[:] = sorted(nums1)
+        
