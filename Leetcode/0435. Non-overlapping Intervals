@@ -1,0 +1,24 @@
+https://leetcode.com/problems/non-overlapping-intervals/description/?envType=study-plan-v2&envId=leetcode-75
+
+import math
+
+class Solution(object):
+    def eraseOverlapIntervals(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: int
+        """
+        count = 0
+
+        intervals = sorted(intervals, key = lambda x : x[1])
+        curr_end = -float('inf')   #starting from -infinity as intervals might start at -900, etc
+    
+        print(intervals)
+        for interval in intervals:
+            if interval[0]>= curr_end:
+                curr_end = interval[1]
+            else:
+                count += 1
+        return count
+
+        
