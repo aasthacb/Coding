@@ -1,0 +1,33 @@
+https://leetcode.com/problems/get-equal-substrings-within-budget/description/?envType=daily-question&envId=2024-05-28
+
+ngl didnt understand this v well
+
+class Solution(object):
+    def equalSubstring(self, s, t, maxCost):
+        """
+        :type s: str
+        :type t: str
+        :type maxCost: int
+        :rtype: int
+         """
+        if s == t :
+            return len(s)
+        #elif maxCost == 0 :
+            #return 1
+
+        costs = [abs(ord(s[i]) - ord(t[i])) for i in range(len(s))]
+        start = 0
+        sublen = 0
+        max_len = 0
+
+        for end in range(len(costs)):
+            sublen += 1
+            maxCost -= costs[end]
+            while maxCost < 0:  # Shrink the window if the cost exceeds maxCost
+                maxCost += costs[start]
+                start += 1
+                sublen -= 1
+            max_len = max(max_len, sublen)
+
+        return max_len
+        
