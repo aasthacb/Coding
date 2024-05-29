@@ -1,0 +1,23 @@
+https://leetcode.com/problems/greatest-common-divisor-of-strings/description/?envType=study-plan-v2&envId=leetcode-75
+
+class Solution(object):
+    def gcdOfStrings(self, str1, str2):
+        """
+        :type str1: str
+        :type str2: str
+        :rtype: str
+        """
+        if len(str1) > len(str2) : t = str2
+        else: t = str1
+        #sublen = len(t)
+        while(len(t)>0):
+            if len(str1) % len(t) == 0 and len(str2) % len(t) == 0:
+                strlst1 = [str1[i:i + len(t)] for i in range(0, len(str1), len(t))]
+                strlst2 =  [str2[i:i + len(t)] for i in range(0, len(str2), len(t))]
+                if strlst1.count(t) == len(strlst1) and strlst2.count(t) == len(strlst2):
+                    return t
+            t = t[:-1]
+        return ""
+
+
+        
