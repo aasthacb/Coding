@@ -1,0 +1,19 @@
+https://leetcode.com/problems/valid-palindrome/description/?envType=study-plan-v2&envId=top-interview-150
+
+class Solution(object):
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        lst = [c for c in s.lower() if c.isalnum()]
+        i = 0
+        while(i < len(lst)/2):
+            if lst[i] != lst[len(lst)-i-1]:
+                return False
+            i += 1
+        return True
+
+        
+        
+        
