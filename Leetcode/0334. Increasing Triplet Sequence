@@ -1,0 +1,22 @@
+https://leetcode.com/problems/increasing-triplet-subsequence/description/?envType=study-plan-v2&envId=leetcode-75
+
+class Solution(object):
+    def increasingTriplet(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        first = float('inf')
+        second = float('inf')
+        #third = -float('inf')
+        for num in nums:
+            if num < first and num < second:  #1st round => first will be initialised
+                first = num
+            elif num > first and num < second: #2nd round => second will be initialised
+                second = num
+            elif num > second:  #third found
+                return True
+        return False
+
+
+        
