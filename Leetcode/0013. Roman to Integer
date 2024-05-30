@@ -1,0 +1,51 @@
+https://leetcode.com/problems/roman-to-integer/description/?envType=study-plan-v2&envId=top-interview-150
+
+
+class Solution(object):
+
+    var_dict = {'M' : 1000, 'D' : 500, 'C' : 100, 'L' : 50, 'X' : 10, 'V' : 5, 'I' : 1}
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        num,i = 0,0
+
+        while i < len(s):
+            if s[i] == 'C' and i < len(s)-1 :
+                if s[i+1] == 'D' : 
+                    num += 400
+                    i+=2
+                    continue
+                if s[i+1] == 'M':
+                    num += 900
+                    i+=2
+                    continue
+            if s[i] == 'X' and i < len(s)-1  :
+                if s[i+1] == 'L' : 
+                    num += 40
+                    i+=2
+                    continue
+                if s[i+1] == 'C' :
+                    num += 90
+                    i+=2
+                    continue
+            if s[i] == 'I' and i < len(s)-1 :
+                if s[i+1] == 'V' : 
+                    num += 4
+                    i+=2
+                    continue
+                if s[i+1] == 'X' :
+                    num += 9
+                    i+=2
+                    continue
+            num += self.var_dict[s[i]]
+            i+=1
+            print(num)
+        
+        return num
+            
+            
+            
+
+        
