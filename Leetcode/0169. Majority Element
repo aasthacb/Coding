@@ -1,0 +1,27 @@
+https://leetcode.com/problems/majority-element/?envType=study-plan-v2&envId=top-interview-150
+
+
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums = sorted(nums)
+        i = 0
+        curr_num = nums[0]
+        var_dict = {nums[0] : 0}
+        while(i<len(nums)):
+            if nums[i] == curr_num:
+                var_dict[curr_num] += 1
+            else:
+                curr_num = nums[i]
+                var_dict[curr_num] = 1  #first occurance
+            i += 1
+        print(var_dict)
+
+
+        for key in var_dict:
+            if var_dict[key] > len(nums)/2 :
+                return key
+     
