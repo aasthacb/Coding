@@ -1,0 +1,23 @@
+https://leetcode.com/problems/remove-element/description/?envType=study-plan-v2&envId=top-interview-150
+
+class Solution(object):
+
+    
+    def removeElement(self, nums, val):
+        """
+        :type nums: List[int]
+        :type val: int
+        :rtype: int
+        """
+        result = len(nums)
+        i = 0
+        while(i < len(nums)):
+            if nums[i] == val:
+                nums[:] = nums[:i] + nums[i+1:]
+                result -= 1
+            else:
+                i += 1
+        print(nums)
+        return result
+
+        
