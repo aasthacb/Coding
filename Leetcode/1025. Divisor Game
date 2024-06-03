@@ -1,0 +1,25 @@
+class Solution(object):
+    def divisorGame(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        #alice will win if n is even. 2 can be reached by her and she'll then choose 1. bob loses as no more 
+        return n%2 == 0
+
+#METHOD 2
+        def divisorGame(self, n):
+            if n==1:
+                return False
+            else:
+                dp=[False]*(n+1)
+                dp[2]=True
+                for i in range(3,n+1):
+                    for j in range(1,int(sqrt(i))):
+                        if i%j==0 and dp[i-j]==False:
+                            dp[i]=True
+                return dp[-1]
+
+        
+        
+        
