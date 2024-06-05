@@ -1,0 +1,33 @@
+class Solution(object):
+    def isValidSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: bool
+        """
+        def isValidList(lst):
+            found = []
+            empty_count = 0
+            for x in lst:
+                if x == '.':
+                    empty_count += 1
+                else:
+                    if x in found: return False
+                    else: found.append(x)
+            return empty_count == 9 - len(found)
+
+        #for rows and columns
+        for i in range (len(board)): 
+            if not isValidList(board[i]) : return False
+            col = [x[i] for x in board]
+            if not isValidList(col)  : return False
+
+        #for grids
+        index_group  = [[0,1,2],[3,4,5],[6,7,8]]
+
+        for rows in index_group:
+            for cols in index_group:
+                grid = [board[j][i] for i in rows for j in cols]
+                if not isValidList(grid) : return False
+
+        return True
+                
