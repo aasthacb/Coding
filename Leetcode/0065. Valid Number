@@ -1,0 +1,60 @@
+class Solution(object):
+    def isNumber(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        allowed = ['0','1','2','3','4','5','6','7','8','9','e','E','+','-','.']
+        digits = ['0','1','2','3','4','5','6','7','8','9']
+        sign = ['+','-'] 
+
+        if len(s) == 1 and s[0] not in digits : return False #for cases like '.'
+        if s.count('.')>1 : return False  #e can only be followed by an integer
+        ops = [x for x in s if x in sign]  #max 2 signs allowed
+        if len(ops)> 2 : return False
+
+
+        for i in range(len(s)):
+            if s[i] not in allowed : return False
+
+            if i == 0: #first char can be sign or dot or digit
+                if (s[i] not in sign) and (s[i] != '.') and (s[i] not in digits) : return False
+                if s[i] in sign: #a '.' or sign must be followed by a digit
+                    if s[i+1] not in digits and s[i+1] != '.' : return False
+                if s[i] == '.':
+                    if s[i+1] not in digits : return False
+
+            if i == len(s) - 1: #last char can be dot or digit
+                if s[i] != '.' and s[i] not in digits : return False
+                if s[i] == '.':
+                    if s[i-1] not in digits : return False
+
+            if s[i] == 'E':  #transforming 'E' to 'e' for convenience
+                s_list = list(s)
+                s_list[i] = 'e'
+                s = ''.join(s_list)
+            if s[i] == 'e': #after transformation
+                if i == 0 or i == len(s) -1 : return False
+                if s[i-1] not in digits and s[i-1] != '.': return False
+                if s[i+1] not in digits and s[i+1] not in sign : return False
+
+        for i in range(len(s)):
+            if s[i] in sign :
+                if i != 0 and s[i-1] != 'e': return False
+
+            if s[i] == '.':
+                #print("hi")
+                if i == 0 and s[i+1] not in digits : return False
+                 
+                if 'e' in s:
+                    eindx = s.find('e')
+                    if i > eindx: return False #. can't be after e
+                    if s[i+1] not in digits and s[i-1] not in digits : 
+                        #print("hi")
+                        return False
+
+
+        if s.count('e')>1 : return False
+
+        return True
+
