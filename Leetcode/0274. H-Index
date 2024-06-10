@@ -1,0 +1,26 @@
+class Solution(object):
+    def hIndex(self, citations):
+        """
+        :type citations: List[int]
+        :rtype: int
+        """
+        #h-index = max h -> h papers with atleast h citations
+
+        data = {}
+
+        for i in range (len(citations)+1):
+            count = 0
+            for p in citations:
+                if p >= i : count += 1
+            data[i] = count
+        #print(data) 
+        #print(lst)
+        return max([x for x in data if x<= data[x]])
+
+            
+
+        
+
+
+
+        
