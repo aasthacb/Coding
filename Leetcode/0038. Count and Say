@@ -1,0 +1,32 @@
+class Solution(object):
+    def RLE(self,seq):
+        #num_count = {}
+        if len(seq) == 1 : return '1' + str(seq[0])
+        res = ""
+        
+        curr = seq[0]
+        count = 1
+        i = 1
+        
+        while(i < len(seq)):
+            print("hi")
+            if seq[i] == curr :
+                count +=1
+                i += 1
+            else:
+                res += str(count) + str(curr)
+                curr = seq[i]
+                count = 1
+                i += 1
+        res += str(count) + str(curr)
+        return res
+
+    def countAndSay(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        if n == 1 : return '1'
+        else : return self.RLE(self.countAndSay(n-1))
+        
+        
