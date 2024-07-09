@@ -1,0 +1,20 @@
+https://leetcode.com/problems/fibonacci-number/description/
+
+class Solution(object):
+    def fib(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        #using dynamic programming to find fib(n)
+        dp = {}
+        def func(n,dp):
+            if n in dp.keys() : return dp[n]
+            if n == 0 : return 0
+            if n <= 2 : return 1
+            
+            dp[n] = func(n-1,dp) + func(n-2,dp)
+            return dp[n]
+
+        return func(n,dp)
+        
