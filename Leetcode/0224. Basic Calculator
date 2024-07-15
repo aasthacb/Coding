@@ -1,0 +1,52 @@
+https://leetcode.com/problems/basic-calculator/description/
+
+#using stack to keep track of signs
+
+class Stack():
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        return self.items.pop()  # Added return statement to pop method
+
+    def peek(self):
+        return self.items[-1]
+
+class Solution(object):
+    def calculate(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        digits = set('0123456789')  # Use set for faster lookup
+        operators = {'+', '-'}      # Use set for faster lookup
+        s = "".join([x for x in s if x.isdigit() or x in operators or x in '()'])  # Simplified condition
+
+        result = 0
+        sign = 1  # 1: positive, -1: negative
+        num = 0
+        stack = Stack()
+        stack.push(sign)
+        
+        i = 0
+        while i < len(s):
+            char = s[i]
+            if char.isdigit():
+                num = 0
+                while i < len(s) and s[i].isdigit():
+                    num = num * 10 + int(s[i])
+                    i += 1
+                result += sign * num
+                continue  # Skip i increment since it's handled inside the loop
+            elif char in operators:
+                sign = (stack.peek()*1) if char == '+' else stack.peek() * -1
+            elif char == '(':
+                stack.push(sign)
+            elif char == ')':
+                stack.pop()
+            i += 1
+
+        return result
