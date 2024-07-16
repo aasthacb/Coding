@@ -1,0 +1,24 @@
+class Solution(object):
+    def simplifyPath(self, path):
+        """
+        :type path: str
+        :rtype: str
+        """
+
+        unix_path = path.split('/')
+        unix_path_list = [x for x in unix_path if x != ""]
+        print(unix_path)
+        stack = []
+
+        for dir in unix_path_list:
+            if dir == ".": 
+                continue
+            elif dir == "..":
+                if len(stack) > 0:
+                    stack.pop()
+            else :
+                stack.append(dir)
+
+        return "/" + "/".join(stack)
+
+        
