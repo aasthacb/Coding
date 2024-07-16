@@ -1,0 +1,55 @@
+https://leetcode.com/problems/minimum-window-substring/description/
+
+from collections import Counter
+class Solution(object):
+    #using two dictionaries to keep track of the lengths. (duplicates in t)
+    def minWindow(self, s, t):
+        
+        if len(t) == 1 and t in s:
+            return t
+        
+        if len(t) > len(s):
+            return ""
+
+        t_count = Counter(t)  #creates a dictionary with {character:frequency}
+        required_chars = len(t_count)  #count of all the unique characters in t
+        
+        # Current window properties
+        start = 0
+        end = 0
+        found_chars = {}  #keeps track of characters in the current window
+        formed = 0
+        
+        # Variables to keep track of smallest window
+        min_len = float('inf')
+        min_window = ""
+        
+        while end < len(s):
+            char = s[end]
+            
+#get() used to retrieve the value(count) stored for char and default value is zero if char is not already present in found_chars (add one to it to update the count)
+            found_chars[char] = found_chars.get(char, 0) + 1   
+            
+            # If this character fulfills the requirement in t
+            if char in t_count and found_chars[char] == t_count[char]:
+                formed += 1
+            
+            # Try to contract the window from the left
+            while formed == required_chars and start <= end:
+                current_len = end - start + 1
+                if current_len < min_len:
+                    min_len = current_len
+                    min_window = s[start:end+1]
+                
+                #updating start to find min windows
+                left_char = s[start]
+                found_chars[left_char] -= 1
+                if left_char in t_count and found_chars[left_char] < t_count[left_char]:
+                    formed -= 1
+                
+                start += 1
+            
+            # Expand the window from the right
+            end += 1
+        
+        return min_window
