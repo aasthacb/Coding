@@ -1,0 +1,25 @@
+#sorting tokens first. using smaller tokens to gain score and larger ones to regain power
+
+class Solution:
+    def bagOfTokensScore(self, tokens: List[int], power: int) -> int:
+        tokens.sort()
+        max_score = 0
+        score = 0
+        left, right = 0, len(tokens) - 1
+        
+        while left <= right:
+            if power >= tokens[left]:
+                # Play face up to gain score
+                power -= tokens[left]
+                score += 1
+                left += 1
+                max_score = max(max_score, score)
+            elif score > 0:
+                # Play face down to regain power
+                power += tokens[right]
+                score -= 1
+                right -= 1
+            else:
+                break
+        
+        return max_score
