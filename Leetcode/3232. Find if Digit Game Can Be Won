@@ -1,0 +1,6 @@
+class Solution:
+    def canAliceWin(self, nums: List[int]) -> bool:
+        double_digit_sum = sum([x for x in nums if x > 9])
+        single_digit_sum = sum(nums) - double_digit_sum
+
+        return single_digit_sum != double_digit_sum  #if they arent equal -> one of them is greater -> alice can win
