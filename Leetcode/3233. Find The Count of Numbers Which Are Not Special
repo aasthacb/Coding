@@ -1,0 +1,20 @@
+import math
+
+class Solution:
+    def nonSpecialCount(self, left: int, right: int) -> int:
+        # Logic: only squares of prime numbers between sqrt(left) and sqrt(right) are special
+
+        def is_prime(n: int) -> bool:
+            """Check if a number is prime."""
+            if n < 2:
+                return False
+            for i in range(2, int(math.sqrt(n)) + 1):
+                if n % i == 0:
+                    return False
+            return True
+
+        # Calculate the count of special numbers
+        special_count = sum(1 for x in range(math.ceil(math.sqrt(left)), math.floor(math.sqrt(right)) + 1) if is_prime(x))
+
+        
+        return (right - left + 1) - special_count   #total count - special count = non special count
