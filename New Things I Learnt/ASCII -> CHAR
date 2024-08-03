@@ -1,0 +1,2 @@
+ord() to convert character to its unicode ascii integer
+chr() to conver ascii integer to character
