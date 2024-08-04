@@ -1,0 +1,2 @@
+sort() : sorts the array in place (rewrites it)  (generally faster)
+sorted() : creates a new array and stores it in another memory
