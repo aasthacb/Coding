@@ -14,3 +14,16 @@ class Solution:
             max_sum = max(max_sum, current_sum)
 
         return max_sum
+
+
+#Another way of finding subarrays (here i am finding the max subarray sum) - gives TLE some times
+def maxSubArray(self, nums: List[int]) -> int:
+        max_sum = float('-inf')
+        n = len(nums)
+        for i in range(n):
+            curr_sum = 0
+            for j in range(i,n):
+                curr_sum += nums[j]
+                if curr_sum  > max_sum:
+                    max_sum = curr_sum
+        return max_sum
