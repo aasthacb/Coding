@@ -1,0 +1,145 @@
+my brute force approach:
+
+class neighborSum:
+    def __init__(self, grid: List[List[int]]):
+        self.people = grid
+
+    def adjacentSum(self, value: int) -> int:
+        n = len(self.people)
+        for row in range(n):
+            for col in range(n):
+                if self.people[row][col] == value:
+                    #first row
+                    if row == 0:
+                        #top left
+                        if col == 0:
+                            return self.people[row][col+1] + self.people[row+1][col]
+                        #top right
+                        elif col == n-1:
+                            return self.people[row][col-1] + self.people[row+1][col]
+                        #others
+                        else:
+                            return self.people[row][col-1] + self.people[row][col+1] + self.people[row+1][col]
+                    #last row
+                    elif row == n-1:
+                        #bottom left
+                        if col == 0:
+                            return self.people[row][col+1] + self.people[row-1][col]
+                        #bottom right
+                        elif col == n-1:
+                            return self.people[row][col-1] + self.people[row-1][col]
+                        #others
+                        else:
+                            return self.people[row][col-1] + self.people[row][col+1] + self.people[row-1][col]
+                    #first col (except top and bottom)
+                    elif col == 0:
+                        return self.people[row-1][col] + self.people[row][col+1] + self.people[row+1][col] 
+
+                    #last col (except top and bottom)
+                    elif col == n-1:
+                        return self.people[row][col-1] + self.people[row+1][col] + self.people[row-1][col]
+                    else:
+                        return self.people[row][col-1] + self.people[row][col+1] + self.people[row-1][col] + self.people[row+1][col]
+
+                        
+                    
+        
+
+    def diagonalSum(self, value: int) -> int:
+        n = len(self.people)
+        for row in range(n):
+            for col in range(n):
+                if self.people[row][col] == value:
+                    #first row
+                    if row == 0:
+                        #top left
+                        if col == 0:
+                            return self.people[row+1][col+1]
+                        #top right
+                        elif col == n-1:
+                            return self.people[row+1][col-1]
+                        #others
+                        else:
+                            return self.people[row+1][col-1] + self.people[row+1][col+1]
+                    #last row
+                    elif row == n-1:
+                        #bottom left
+                        if col == 0:
+                            return self.people[row-1][col+1]
+                        #bottom right
+                        elif col == n-1:
+                            return self.people[row-1][col-1]
+                        #others
+                        else:
+                            return self.people[row-1][col-1] + self.people[row-1][col+1]
+                    #first col (except top and bottom)
+                    elif col == 0:
+                        return self.people[row-1][col+1] + self.people[row+1][col+1] 
+                    #last col (except top and bottom)
+                    elif col == n-1:
+                        return self.people[row+1][col-1] + self.people[row-1][col-1]
+                    else:
+                        return self.people[row-1][col-1] + self.people[row-1][col+1] + self.people[row+1][col-1] + self.people[row+1][col+1]
+
+# Your neighborSum object will be instantiated and called as such:
+# obj = neighborSum(grid)
+# param_1 = obj.adjacentSum(value)
+# param_2 = obj.diagonalSum(value)
+
+
+--------------------------------------------------------------------------------
+#chatgpt method - same approach but more readable
+
+from typing import List
+
+class neighborSum:
+
+    def __init__(self, grid: List[List[int]]):
+        self.people = grid
+        self.n = len(grid)
+
+    def get_adjacent_positions(self, row: int, col: int) -> List[tuple]:
+        adjacent_positions = [
+            (row - 1, col),   # Up
+            (row + 1, col),   # Down
+            (row, col - 1),   # Left
+            (row, col + 1)    # Right
+        ]
+        return [(r, c) for r, c in adjacent_positions if 0 <= r < self.n and 0 <= c < self.n]
+
+    def get_diagonal_positions(self, row: int, col: int) -> List[tuple]:
+        diagonal_positions = [
+            (row - 1, col - 1),  # Top-Left
+            (row - 1, col + 1),  # Top-Right
+            (row + 1, col - 1),  # Bottom-Left
+            (row + 1, col + 1)   # Bottom-Right
+        ]
+        return [(r, c) for r, c in diagonal_positions if 0 <= r < self.n and 0 <= c < self.n]
+
+    def find_value_position(self, value: int) -> tuple:
+        for row in range(self.n):
+            for col in range(self.n):
+                if self.people[row][col] == value:
+                    return row, col
+        return -1, -1  # If value is not found
+
+    def adjacentSum(self, value: int) -> int:
+        row, col = self.find_value_position(value)
+        if row == -1:  # Value not found
+            return 0
+        
+        adjacent_positions = self.get_adjacent_positions(row, col)
+        return sum(self.people[r][c] for r, c in adjacent_positions)
+
+    def diagonalSum(self, value: int) -> int:
+        row, col = self.find_value_position(value)
+        if row == -1:  # Value not found
+            return 0
+        
+        diagonal_positions = self.get_diagonal_positions(row, col)
+        return sum(self.people[r][c] for r, c in diagonal_positions)
+
+# Example usage:
+# obj = NeighborSum(grid)
+# param_1 = obj.adjacent_sum(value)
+# param_2 = obj.diagonal_sum(value)
