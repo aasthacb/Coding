@@ -6,9 +6,15 @@ class Solution:
         freq = Counter(arr)
         distinct_strings = []
 
-        for string in arr:
-            if freq[string] == 1:
-                distinct_strings.append(string)
+        #for string in arr:
+            #if freq[string] == 1:
+                #distinct_strings.append(string)
+
+        #faster
+        distinct_strings = [string for string in arr if freq[string] == 1]
+
         print(distinct_strings)
         if len(distinct_strings) < k : return ""
         else : return distinct_strings[k-1]
+
+
